@@ -1,103 +1,145 @@
-import Image from "next/image";
-
-export default function Home() {
+const Landing = () => {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="min-h-screen bg-background">
+      {/* Hero Section */}
+      <div className="relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+          <div className="text-center">
+            <div className="text-sm font-medium text-primary mb-4 tracking-wide uppercase">
+              AI-POWERED PLATFORM
+            </div>
+            <div className="text-5xl lg:text-7xl font-bold text-foreground mb-6 leading-tight">
+              Content That
+              <div className="text-primary">Understands You</div>
+            </div>
+            <div className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
+              Transform your content strategy with intelligent personalization. Our AI adapts in real-time to deliver exactly what your audience needs, when they need it.
+            </div>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="bg-primary text-primary-foreground px-8 py-4 rounded-lg font-semibold hover:opacity-90 transition-opacity cursor-pointer">
+                Start Free Trial
+              </div>
+              <div className="border border-border text-foreground px-8 py-4 rounded-lg font-semibold hover:bg-muted transition-colors cursor-pointer">
+                Watch Demo
+              </div>
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        
+        {/* Background Pattern */}
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-primary/5 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/10 rounded-full blur-3xl"></div>
+        </div>
+      </div>
+
+      {/* Features Section */}    <div className="py-24 bg-muted/30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <div className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
+              Personalization at Scale
+            </div>
+            <div className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Our AI engine learns from every interaction to deliver content that converts
+            </div>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-card border border-border rounded-xl p-8 hover:shadow-lg transition-shadow">
+              <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
+                <div className="w-6 h-6 bg-primary rounded"></div>
+              </div>
+              <div className="text-xl font-semibold text-card-foreground mb-4">
+                Real-time Adaptation
+              </div>
+              <div className="text-muted-foreground leading-relaxed">
+                Content automatically adjusts based on user behavior, preferences, and engagement patterns in real-time.
+              </div>
+            </div>
+            
+            <div className="bg-card border border-border rounded-xl p-8 hover:shadow-lg transition-shadow">
+              <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
+                <div className="w-6 h-6 bg-primary rounded-full"></div>
+              </div>
+              <div className="text-xl font-semibold text-card-foreground mb-4">
+                Smart Recommendations
+              </div>
+              <div className="text-muted-foreground leading-relaxed">
+                AI-powered suggestions help users discover relevant content they might have missed.
+              </div>
+            </div>
+            
+            <div className="bg-card border border-border rounded-xl p-8 hover:shadow-lg transition-shadow">
+              <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
+                <div className="w-6 h-6 bg-primary rounded-sm rotate-45"></div>
+              </div>
+<div className="text-xl font-semibold text-card-foreground mb-4">
+                Analytics Dashboard
+              </div>
+              <div className="text-muted-foreground leading-relaxed">
+                Deep insights into content performance and user engagement with actionable recommendations.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Stats Section */}
+      <div className="py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-4 gap-8 text-center">
+            <div>
+              <div className="text-4xl font-bold text-primary mb-2">94%</div>
+              <div className="text-muted-foreground">Higher Engagement</div>
+            </div>
+            <div>
+              <div className="text-4xl font-bold text-primary mb-2">3.2x</div>
+              <div className="text-muted-foreground">Conversion Rate</div>
+            </div>
+            <div>
+              <div className="text-4xl font-bold text-primary mb-2">50M+</div>
+              <div className="text-muted-foreground">Content Pieces</div>
+            </div>
+            <div>
+              <div className="text-4xl font-bold text-primary mb-2">99.9%</div>
+              <div className="text-muted-foreground">Uptime</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* CTA Section */}
+      <div className="py-24 bg-primary">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="text-3xl lg:text-4xl font-bold text-primary-foreground mb-6">
+            Ready to Transform Your Content Strategy?
+          </div>
+          <div className="text-lg text-primary-foreground/80 mb-8">
+            Join thousands of companies already using AI to deliver personalized experiences
+          </div>
+          <div className="bg-background text-foreground px-8 py-4 rounded-lg font-semibold hover:opacity-90 transition-opacity cursor-pointer inline-block">
+            Get Started Today
+          </div>
+        </div>
+      </div>
+
+      {/* Footer */}
+      <div className="py-12 border-t border-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="text-xl font-bold text-foreground mb-4 md:mb-0">
+              ContentAI
+            </div>
+            <div className="flex space-x-8 text-muted-foreground">
+              <div className="hover:text-foreground cursor-pointer">Privacy</div>
+              <div className="hover:text-foreground cursor-pointer">Terms</div>
+              <div className="hover:text-foreground cursor-pointer">Contact</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
-}
+};
+
+export default Landing;
