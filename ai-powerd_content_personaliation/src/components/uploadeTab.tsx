@@ -5,8 +5,13 @@ import { Button } from "./ui/button";
 import { Progress } from "./ui/progress";
 import {  TabsContent} from "./ui/tabs";
 import { useRef } from "react";
+import {useUploadFileToS3 } from "../context/UploadFiletoS3"
 
-const UploadTab = ({isDragging,isUploading, handleDrop, setIsDragging}) => {
+
+
+const UploadTab = ({isDragging,isUploading, handleDrop, setIsDragging, uploadProgress, handleFileUpload}) => {
+const {UploadFile,RemoveFile } = useUploadFileToS3()
+
 const fileInputRef = useRef<HTMLInputElement>(null);
 
 
