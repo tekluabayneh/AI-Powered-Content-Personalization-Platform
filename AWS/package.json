@@ -9,12 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.872.0",
     "@radix-ui/react-avatar": "^1.1.10",
     "@radix-ui/react-progress": "^1.1.7",
     "@radix-ui/react-tabs": "^1.1.12",
     "@types/formidable": "^3.4.5",
     "axios": "^1.11.0",
     "class-variance-authority": "^0.7.1",
+    "dotenv": "^17.2.1",
     "formidable": "^3.5.4",
     "lucide-react": "^0.525.0",
     "next": "15.4.2",

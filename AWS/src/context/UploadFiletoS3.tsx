@@ -12,31 +12,21 @@ const UploadFileContext = createContext<UploadFileToS3Types | null>(null);
 const UploadFileProvider = ({ children }: { children?: React.ReactNode }) => {
 
 
-    const UploadFile = async (file) => {
+    const UploadFile = async (file:string) => {
         console.log(file)
-        const formdata = new FormData();
-        formdata.append("file", file);
-
         try {
-            const response = await fetch("http://localhost:3000/api/UploadToS3",{
-                method:"POST",
-                headers:{ 
-                    'Content-Type': 'application/octet-stream',
-                      'X-Filename': encodeURIComponent(file.name),
-                }, 
-               body:formdata
-            });
-
-             const data = await response.json()
-            console.log(data)
+            const response = await axios.post("http://localhost:3000/api/UploadToS3",{quote:file});
+            console.log(response)
         } catch (error) {
             console.error("Upload failed:", error);
         }
     };
 
+
     const RemoveFile = () => {
         // Implement logic
     };
+
 
     return (
         <UploadFileContext.Provider value={{ UploadFile, RemoveFile }}>

@@ -1,64 +1,24 @@
-import stream from "stream";
-import { IncomingForm } from "formidable";
-import path from "path";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+import {CreateBucket, UploadeToS3} from "./upload"
 
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
-
-async function parseForm(req: Request) {
-  const form = new IncomingForm({
-    keepExtensions: true,
-    uploadDir: path.join(process.cwd(), "public", "uploads"),
-  });
-
-  return new Promise<{ fields: any; files: any }>((resolve, reject) => {
-    const chunks: Uint8Array[] = [];
-
-    const reader = req.body?.getReader();
-    if (!reader) return reject(new Error("No request body"));
-
-    // Read the entire stream
-    function read() {
-      reader?.read().then(({ done, value }) => {
-        if (done) {
-          const buffer = Buffer.concat(chunks);
-
-          const readable = new stream.Readable();
-          readable.push(buffer);
-          readable.push(null);
-
-          // Override the headers so formidable can parse it
-          (readable as any).headers = Object.fromEntries(req.headers);
-
-          form.parse(readable, (err, fields, files) => {
-            if (err) reject(err);
-            else resolve({ fields, files });
-          });
-          return;
-        }
-        chunks.push(value);
-        read();
-      });
-    }
-    read();
-  });
-}
-
-export async function POST(req: Request) {
+export async function POST(req:NextRequest, res:NextResponse) {
+    if(!req.body){ return }
+    const body =  await req.json()
   try {
-    const { files } = await parseForm(req);
-        console.log(files)
-    const uploadedFile = Array.isArray(files.file) ? files.file[0] : files.file;
-    const filename = path.basename(uploadedFile?.filepath);
 
-    return NextResponse.json({ message: "Upload successful", filename , files});
+
+const {quote} = body 
+const jsonString = JSON.stringify({quote})
+const bucketName = "my-json-bucket-day-one";
+const keyName = `${quote.split(" ")[0]}.json`
+
+const CreatBucketResult = await CreateBucket(bucketName);           
+const result = await UploadeToS3(bucketName, keyName, jsonString); 
+
+    return NextResponse.json({ message:`Successfully uploaded ${keyName} to ${bucketName}, this is the result: ${result} and the bucketCreateion result: ${CreatBucketResult}`})
   } catch (error) {
     console.error("Upload error:", error);
-    return NextResponse.json({ message: "Upload error" }, { status: 500 });
+    return NextResponse.json({ message: "Upload error", erro:error}, { status: 500 });
   }
 }
 

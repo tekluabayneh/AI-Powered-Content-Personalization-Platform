@@ -2,17 +2,12 @@
 import { Cloud, Upload, FolderPlus, Plus, Link } from "lucide-react";
 import { Card } from "./ui/card";
 import { Button } from "./ui/button";
-import { Progress } from "./ui/progress";
 import {  TabsContent} from "./ui/tabs";
-import { useRef } from "react";
+import { useState } from "react";
 
 
 const UploadTab = ({isDragging,isUploading, handleDrop, setIsDragging, uploadProgress, handleFileUpload}) => {
-
-const fileInputRef = useRef<HTMLInputElement>(null);
-
-
-
+const [loadQuote, setLoadQuote ]  =useState("")
     return (
 
         <TabsContent value="upload" className="space-y-6 animate-fade-in">
@@ -38,33 +33,18 @@ isDragging
                                 Drag and drop files here, or click to select files
                             </p>
                             <Button 
-                                onClick={() => fileInputRef.current?.click()}
-                                className="bg-gradient-primary hover:opacity-90 transition-opacity"
+                                onClick={() => handleFileUpload(loadQuote)}
+                                className="bg-gradient-primary hover:opacity-90 transition-opacity cursor-pointer"
                             >
                                 <Plus className="w-4 h-4 mr-2" />
-                                Choose Files
+                               uploade Quote
                             </Button>
                         </div>
                     </div>
 
-                    <input
-                        ref={fileInputRef}
-                        type="file"
-                        multiple
-                        className="hidden"
-                        onChange={(e) => handleFileUpload(e.target.files)}
-                    />
+                    <input type="text" value={loadQuote} className="w-full border border-gray-400" onChange={(e) => setLoadQuote(e.target.value)} />
                 </div>
 
-                {isUploading && (
-                    <div className="mt-6 space-y-2">
-                        <div className="flex justify-between text-sm">
-                            <span>Uploading files...</span>
-                            <span>{uploadProgress}%</span>
-                        </div>
-                        <Progress value={uploadProgress} className="h-2" />
-                    </div>
-                )}
             </Card>
 
             {/* Quick Actions */}
