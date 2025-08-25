@@ -77,7 +77,7 @@ const FileSpherePortal = () => {
     const [isDragging, setIsDragging] = useState(false);
     const [uploadProgress, setUploadProgress] = useState(0);
     const [isUploading, setIsUploading] = useState(false);
-    const {UploadFile,RemoveFile } = useUploadFileToS3()
+    const {UploadFile,RemoveFile, updateFile } = useUploadFileToS3()
     const { toast } = useToast();
 
 
@@ -94,6 +94,13 @@ const FileSpherePortal = () => {
 
     };
 
+
+    const handleUpdateFile = (newFileName:string, newFile:string) => { 
+        if(!newFileName || !newFile) return 
+        updateFile(newFileName, newFile) 
+    } 
+
+
     const getFileIcon = (type: string) => {
         switch (type) {
             case 'image': return Image;
@@ -107,15 +114,6 @@ const FileSpherePortal = () => {
 
 
 
-
-    const handleDrop = (e: React.DragEvent) => {
-        e.preventDefault();
-        setIsDragging(false);
-        handleFileUpload(e.dataTransfer.files);
-    };
-
-
-
     const toggleLike = (fileId: string) => {
         setFiles(prev => prev.map(file => 
             file.id === fileId 
@@ -125,14 +123,6 @@ const FileSpherePortal = () => {
     };
 
 
-    const generateShareLink = (fileId: string) => {
-        const shareUrl = `https://filesphere.app/shared/${fileId}`;
-        navigator.clipboard.writeText(shareUrl);
-        toast({
-            title: "Share Link Copied",
-            description: "Secure share link copied to clipboard",
-        });
-    };
 
     const filteredFiles = files.filter(file => 
         file.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -176,7 +166,7 @@ const FileSpherePortal = () => {
                     <FileTab searchQuery={searchQuery}  setSearchQuery={setSearchQuery} filteredFiles={filteredFiles} getFileIcon={getFileIcon} toggleLike={toggleLike}/>              
                     {/* Upload Tab */}
 
-                    <UploadTab isDragging={isDragging} handleDrop={handleDrop} isUploading={isUploading} setIsDragging={setIsDragging} uploadProgress={uploadProgress} handleFileUpload={handleFileUpload}/>
+                    <UploadTab handleFileUpload={handleFileUpload} handleUpdateFile={handleUpdateFile}/>
 
 
                     {/* Profile Tab */}

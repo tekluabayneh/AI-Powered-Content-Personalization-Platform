@@ -24,4 +24,22 @@ const result = await UploadeToS3(bucketName, keyName, jsonString);
 
 
 
+export async function PUT(req:Request, res:Response) { 
+    if(!req.json) return 
+
+const body = await req.json()
+try {
+   const {newFileName, newFile} = body 
+
+    console.log(newFileName, newFile)
+return NextResponse.json({message:"updated Successfully"}, {status:200})
+} catch (error) {
+    return NextResponse.json({ message: "update error", erro:error}, { status: 500 });
+}
+
+
+} 
+
+
+
 

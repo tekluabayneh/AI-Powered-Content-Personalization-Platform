@@ -6,23 +6,23 @@ import {  TabsContent} from "./ui/tabs";
 import { useState } from "react";
 
 
-const UploadTab = ({isDragging,isUploading, handleDrop, setIsDragging, uploadProgress, handleFileUpload}) => {
+const UploadTab = ({handleUpdateFile , handleFileUpload}) => {
 const [loadQuote, setLoadQuote ]  =useState("")
+const [newFileName, setnewFileName] = useState("")
+const [newFile, setnewFile] = useState("") 
+
+
+ const handelUpdate = () =>  { 
+ console.log("name=>", newFileName, "file=>", newFile)  
+handleUpdateFile(newFileName, newFile) 
+    } 
+
+
     return (
 
         <TabsContent value="upload" className="space-y-6 animate-fade-in">
             <Card className="p-8 bg-gradient-surface border-border shadow-card">
-                <div
-                    className={`border-2 border-dashed rounded-lg p-12 text-center transition-all duration-300 ${
-isDragging 
-? 'border-upload-zone-active bg-upload-zone-active/10 scale-105' 
-: 'border-border hover:border-upload-zone hover:bg-upload-zone/5'
-}`}
-                    onDrop={handleDrop}
-                    onDragOver={(e) => e.preventDefault()}
-                    onDragEnter={() => setIsDragging(true)}
-                    onDragLeave={() => setIsDragging(false)}
-                >
+                <div >
                     <div className="space-y-4">
                         <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto animate-glow-pulse">
                             <Upload className="w-8 h-8 text-white" />
@@ -52,9 +52,11 @@ isDragging
                 <Card className="p-6 bg-gradient-surface border-border shadow-card hover:shadow-primary/20 transition-all cursor-pointer">
                     <div className="text-center space-y-2">
                         <FolderPlus className="w-8 h-8 text-primary mx-auto" />
-                        <h3 className="font-medium">Create Folder</h3>
-                        <p className="text-sm text-muted-foreground">Organize your files</p>
+                        <h3 className="font-medium">UPdate file</h3>
+                       <input  value={newFileName} onChange={(e) => setnewFileName(e.target.value)} type="text" className="border border-white/40  rounded " placeholder="enter file name"/> 
+                       <input value={newFile} onChange={(e) => setnewFile(e.target.value)} type="text" className="border border-white/40  rounded" placeholder="inter new quote"/> 
                     </div>
+                    <button className="cursor-pointer bg-white/40 border border-white/40 rounded " onClick={handelUpdate}>update quote</button>
                 </Card>
 
                 <Card className="p-6 bg-gradient-surface border-border shadow-card hover:shadow-primary/20 transition-all cursor-pointer">
